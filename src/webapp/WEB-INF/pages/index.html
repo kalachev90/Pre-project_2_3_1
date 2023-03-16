@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div>
+    <h2>Users</h2>
+    <form th:action="@{/add}">
+        <input type="submit" value="Add">
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getDepartment()}"></td>
+            <td th:text="${user.getSalary()}"></td>
+            <td>
+                <form th:action="@{/edit/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Edit">
+                </form>
+                <form th:object="${user}" th:action="@{/delete/{id}(id=${user.getId()})}" method="DELETE">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
