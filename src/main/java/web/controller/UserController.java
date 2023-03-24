@@ -39,7 +39,7 @@ public class UserController {
         return "edit";
     }
 
-    @PatchMapping(value = "/edit/{id}")
+    @PostMapping(value = "/edit/{id}")
     public String editUsers(User user, @PathVariable("id") Long id) {
         userService.updateUser(user);
         return "redirect:/";
